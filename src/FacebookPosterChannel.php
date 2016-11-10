@@ -4,6 +4,8 @@ namespace NotificationChannels\FacebookPoster;
 
 use Facebook\Facebook;
 use Illuminate\Notifications\Notification;
+use NotificationChannels\FacebookPoster\Attaches\Video;
+use NotificationChannels\FacebookPoster\Exceptions\InvalidPostContentException;
 
 class FacebookPosterChannel
 {
@@ -25,6 +27,7 @@ class FacebookPosterChannel
      * @param mixed $notifiable
      * @param \Illuminate\Notifications\Notification $notification
      *
+     * @throws InvalidPostContentException
      */
     public function send($notifiable, Notification $notification)
     {
@@ -34,18 +37,25 @@ class FacebookPosterChannel
 
         $endpoint = $facebookMessage->getApiEndpoint();
 
-        // here we check if post body has image or video then we will upload it first to facebook
-        if (isset($postBody['image'])) {
-        	$endpoint = $postBody['image']->getApiEndpoint();
-        	$postBody['source'] = $this->facebook->fileToUpload($postBody['image']->getPath());
-        	unset($postBody['image']);
+        if($postBody['message'] == null && (!isset($postBody['link']) && !isset($postBody['media']))){
+            throw new InvalidPostContentException("Invalid Post Body Content");
         }
 
-        if (isset($postBody['video'])) {
-        	$endpoint = $postBody['video']->getApiEndpoint();
-        	$postBody = array_merge($postBody,$postBody['video']->getData());
-        	$postBody['source'] = $this->facebook->fileToUpload($postBody['video']->getPath());
-        	unset($postBody['video']);
+        // here we check if post body has image or video to upload it first to facebook
+        if (isset($postBody['media'])) {
+        	
+            $endpoint = $postBody['media']->getApiEndpoint();
+
+            if($postBody['media'] instanceof Video)
+            {
+                $postBody = array_merge($postBody,$postBody['media']->getData());
+            }
+        	
+            $method = $postBody['media']->getMethod();
+
+            $postBody['source'] = $this->facebook->{$method}($postBody['media']->getPath());
+
+        	unset($postBody['media']);
         }
 
         $this->facebook->post($endpoint, $postBody);

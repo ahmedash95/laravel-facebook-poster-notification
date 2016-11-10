@@ -1,14 +1,17 @@
 <?php
 
-namespace NotificationChannels\FacebookPoster;
+namespace NotificationChannels\FacebookPoster\Attaches;
 
-class FacebookPosterVideo
+class Video
 {
     /** @var array */
     private $data = [];
 
     /** @var string */
     private $path;
+    
+    /** @var string */
+    private $method = 'fileToUpload';
 
     /**
      * @var  string
@@ -46,5 +49,10 @@ class FacebookPosterVideo
     public function getApiEndpoint()
     {
         return $this->apiEndpoint;
+    }
+
+    public function getMethod()
+    {
+        return $this->method;
     }
 }

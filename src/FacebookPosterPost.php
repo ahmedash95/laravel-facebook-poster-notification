@@ -2,6 +2,10 @@
 
 namespace NotificationChannels\FacebookPoster;
 
+use NotificationChannels\FacebookPoster\Attaches\Link;
+use NotificationChannels\FacebookPoster\Attaches\Image;
+use NotificationChannels\FacebookPoster\Attaches\Video;
+
 class FacebookPosterPost
 {
     /** @var string */
@@ -12,6 +16,9 @@ class FacebookPosterPost
 
     /** @object FacebookPosterImage */
     protected $image;
+
+    /** @object FacebookPosterVideo */
+    protected $video;
 
     /**
      * @var  string
@@ -40,7 +47,7 @@ class FacebookPosterPost
      */
     public function withLink($link)
     {
-        $this->link = new FacebookPosterLink($link);
+        $this->link = new Link($link);
         return $this;
     }
 
@@ -51,7 +58,7 @@ class FacebookPosterPost
      */
     public function withImage($imagePath,$endpoint = 'me/photos')
     {
-        $this->image = new FacebookPosterImage($imagePath,$endpoint);
+        $this->image = new Image($imagePath,$endpoint);
         return $this;
     }
     /**
@@ -61,13 +68,13 @@ class FacebookPosterPost
      */
     public function withVideo($videoPath,$data = [],$endpoint = 'me/videos')
     {
-        $this->video = new FacebookPosterVideo($videoPath,$endpoint);
+        $this->video = new video($videoPath,$endpoint);
         
-        if($data['title']){
+        if(isset($data['title'])){
         	$this->video->setTitle($data['title']);
         }
         
-        if($data['description']){
+        if(isset($data['description'])){
         	$this->video->setDescription($data['description']);
         }
 
@@ -100,12 +107,12 @@ class FacebookPosterPost
 
     	if($this->image != null)
     	{
-    		$body['image'] = $this->image;
+    		$body['media'] = $this->image;
     	}
 
     	if($this->video != null)
     	{
-    		$body['video'] = $this->video;
+    		$body['media'] = $this->video;
     	}
 
     	return $body;

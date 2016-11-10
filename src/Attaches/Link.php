@@ -1,8 +1,8 @@
 <?php
 
-namespace NotificationChannels\FacebookPoster;
+namespace NotificationChannels\FacebookPoster\Attaches;
 
-class FacebookPosterLink
+class Link
 {
     /** @var string */
     private $url;
