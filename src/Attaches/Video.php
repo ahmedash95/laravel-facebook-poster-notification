@@ -9,6 +9,9 @@ class Video
 
     /** @var string */
     private $path;
+    
+    /** @var string */
+    private $method = 'fileToUpload';
 
     /**
      * @var  string
@@ -46,5 +49,10 @@ class Video
     public function getApiEndpoint()
     {
         return $this->apiEndpoint;
+    }
+
+    public function getMethod()
+    {
+        return $this->method;
     }
 }

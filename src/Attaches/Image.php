@@ -12,6 +12,9 @@ class Image
      */
     private $apiEndpoint;
 
+    /** @var string */
+    private $method = 'videoToUpload';
+
     public function __construct($imagePath,$endpoint)
     {
         $this->path        = $imagePath;
@@ -22,8 +25,14 @@ class Image
     {
         return $this->path;
     }
+    
     public function getApiEndpoint()
     {
         return $this->apiEndpoint;
+    }
+
+    public function getMethod()
+    {
+        return $this->method;
     }
 }

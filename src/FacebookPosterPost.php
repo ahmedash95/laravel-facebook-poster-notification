@@ -70,11 +70,11 @@ class FacebookPosterPost
     {
         $this->video = new video($videoPath,$endpoint);
         
-        if($data['title']){
+        if(isset($data['title'])){
         	$this->video->setTitle($data['title']);
         }
         
-        if($data['description']){
+        if(isset($data['description'])){
         	$this->video->setDescription($data['description']);
         }
 
