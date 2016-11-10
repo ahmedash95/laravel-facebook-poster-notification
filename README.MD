@@ -24,7 +24,7 @@ This package makes it easly to post on facebook using FacebookPoster Notificatio
 You can install this package via composer:
 
 ``` bash
-composer require laravel-notification-channels/facebook-poster
+composer require ahmedash95/laravel-facebook-poster-notification
 ```
 
 Next add the service provider to your `config/app.php`:
