@@ -1,8 +1,8 @@
 <?php
 
-namespace NotificationChannels\FacebookPoster;
+namespace NotificationChannels\FacebookPoster\Attaches;
 
-class FacebookPosterVideo
+class Video
 {
     /** @var array */
     private $data = [];

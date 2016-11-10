@@ -1,8 +1,8 @@
 <?php
 
-namespace NotificationChannels\FacebookPoster;
+namespace NotificationChannels\FacebookPoster\Attaches;
 
-class FacebookPosterImage
+class Image
 {
     /** @var string */
     private $path;

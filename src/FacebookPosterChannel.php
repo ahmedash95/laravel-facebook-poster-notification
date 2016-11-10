@@ -4,6 +4,7 @@ namespace NotificationChannels\FacebookPoster;
 
 use Facebook\Facebook;
 use Illuminate\Notifications\Notification;
+use NotificationChannels\FacebookPoster\Attaches\Video;
 
 class FacebookPosterChannel
 {
@@ -35,17 +36,18 @@ class FacebookPosterChannel
         $endpoint = $facebookMessage->getApiEndpoint();
 
         // here we check if post body has image or video then we will upload it first to facebook
-        if (isset($postBody['image'])) {
-        	$endpoint = $postBody['image']->getApiEndpoint();
-        	$postBody['source'] = $this->facebook->fileToUpload($postBody['image']->getPath());
-        	unset($postBody['image']);
-        }
+        if (isset($postBody['media'])) {
+        	
+            $endpoint = $postBody['media']->getApiEndpoint();
 
-        if (isset($postBody['video'])) {
-        	$endpoint = $postBody['video']->getApiEndpoint();
-        	$postBody = array_merge($postBody,$postBody['video']->getData());
-        	$postBody['source'] = $this->facebook->fileToUpload($postBody['video']->getPath());
-        	unset($postBody['video']);
+            if($postBody['media'] instanceof Video)
+            {
+                $postBody = array_merge($postBody,$postBody['media']->getData());
+            }
+        	
+            $postBody['source'] = $this->facebook->fileToUpload($postBody['media']->getPath());
+        	unset($postBody['media']);
+
         }
 
         $this->facebook->post($endpoint, $postBody);
