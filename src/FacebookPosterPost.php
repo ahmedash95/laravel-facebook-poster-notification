@@ -13,6 +13,9 @@ class FacebookPosterPost
     /** @object FacebookPosterImage */
     protected $image;
 
+    /** @object FacebookPosterVideo */
+    protected $video;
+
     /**
      * @var  string
      */
