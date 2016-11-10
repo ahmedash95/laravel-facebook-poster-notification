@@ -5,7 +5,7 @@ namespace NotificationChannels\FacebookPoster;
 use Facebook\Facebook;
 use Illuminate\Notifications\Notification;
 use NotificationChannels\FacebookPoster\Attaches\Video;
-use NotificationChannels\FacebookPoster\Exceptions\InvalidArgumentsException;
+use NotificationChannels\FacebookPoster\Exceptions\InvalidPostContentException;
 
 class FacebookPosterChannel
 {
