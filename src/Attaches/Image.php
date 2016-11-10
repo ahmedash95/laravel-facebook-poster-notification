@@ -12,7 +12,7 @@ class Image
      */
     private $apiEndpoint;
 
-    public function __construct($imagePath)
+    public function __construct($imagePath,$endpoint)
     {
         $this->path        = $imagePath;
         $this->apiEndpoint = $endpoint;
