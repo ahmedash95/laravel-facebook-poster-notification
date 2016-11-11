@@ -16,7 +16,7 @@ This package makes it easly to post on facebook using FacebookPoster Notificatio
 ## Contents
 
 - [Installation](#installation)
-- [Setting up the Facebook posts service](#setting-up-the-facebook-service)
+- [Setting up the Facebook posts service](#setting-up-the-facebook-poster-service)
 - [Usage](#usage)
 	- [Publish Facebook post](#publish-facebook-post)
 	- [Publish Facebook post with link](#publish-facebook-post-with-link)
