@@ -11,7 +11,7 @@ class Video
     private $path;
     
     /** @var string */
-    private $method = 'fileToUpload';
+    private $method = 'videoToUpload';
 
     /**
      * @var  string
