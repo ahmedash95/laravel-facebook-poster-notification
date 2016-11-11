@@ -57,7 +57,7 @@ class FacebookPosterChannel
 
         	unset($postBody['media']);
         }
-     
+
         $this->facebook->post($endpoint, $postBody);
     }
 }

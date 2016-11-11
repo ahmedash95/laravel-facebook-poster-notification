@@ -13,7 +13,7 @@ class Image
     private $apiEndpoint;
 
     /** @var string */
-    private $method = 'videoToUpload';
+    private $method = 'fileToUpload';
 
     public function __construct($imagePath,$endpoint)
     {
